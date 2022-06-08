@@ -13,6 +13,7 @@ let isAdding = false;
 let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
+let isModding = false;
 
 [].forEach.call(btn, function(item, i) {
     item.addEventListener('click', (e) => {
@@ -37,6 +38,7 @@ function operate(input, e) {
             isAdding = true;
             isMultiplying = false;
             isDividing = false;
+            isModding = true;
         
     }
     else if (input == "subtract") {
@@ -48,6 +50,7 @@ function operate(input, e) {
         isSubtracting = true;
         isMultiplying = false;
         isDividing = false;
+        isModding = true;
     }
     else if (input == "multiply") {
         firstNum = numInt;
@@ -57,6 +60,7 @@ function operate(input, e) {
         isSubtracting = false;
         isMultiplying = true;
         isDividing = false;
+        isModding = true;
     }
     else if (input == "divide") {
         firstNum = numInt;
@@ -66,6 +70,17 @@ function operate(input, e) {
         isSubtracting = false;
         isMultiplying = false;
         isDividing = true;
+        isModding = true;
+    }
+    else if (input == "mod") {
+        firstNum = numInt;
+        display.textContent = 0;
+        numString = "";
+        isAdding = false;
+        isSubtracting = false;
+        isMultiplying = false;
+        isDividing = false;
+        isModding = true;
     }
     else if (input == "equal") {
         console.log('equal');
@@ -105,6 +120,10 @@ function divide(x,y) {
     firstNum = x/y;
     return x/y;
 }
+function mod(x,y) {
+    firstNum = x%y;
+    return x%y;
+}
 function equal() {
     console.log(firstNum);
     console.log(secondNum);
@@ -112,6 +131,7 @@ function equal() {
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
+    else if (isModding === true) { numInt = mod(firstNum, secondNum); }
     display.textContent = numInt;
     smallerDisplay.textContent = numInt;
     
