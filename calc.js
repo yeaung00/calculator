@@ -11,6 +11,10 @@ let firstNum = 0;
 let secondNum = 0;
 let isAdding = false;
 let repeatedAddition = false;
+let repeatedSubtraction = false;
+let repeatedMultiplication = false;
+let repeatedDivision = false;
+let repeatedModulo = false;
 let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
@@ -39,49 +43,42 @@ function operate(input, e) {
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
-        isSubtracting = false;
         isAdding = true;
-        repeatedAddition = false;
-        isMultiplying = false;
-        isDividing = false;
-        isModding = false;
-
     }    else if (input == "subtract") {
+        if (isSubtracting) {
+            repeatedSubtraction = true;
+            equal();
+        }
         firstNum = numInt;
-        
         display.textContent = 0;
         numString = "";
-        isAdding = false;
         isSubtracting = true;
-        isMultiplying = false;
-        isDividing = false;
-        isModding = false;
     }else if (input == "multiply") {
+        if (isMultiplying) {
+            repeatedMultiplication = true;
+            equal();
+        }
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
-        isAdding = false;
-        isSubtracting = false;
         isMultiplying = true;
-        isDividing = false;
-        isModding = false;
     }else if (input == "divide") {
+        if (isDividing) {
+            repeatedDivision = true;
+            equal();
+        }
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
-        isAdding = false;
-        isSubtracting = false;
-        isMultiplying = false;
         isDividing = true;
-        isModding = false;
     }else if (input == "mod") {
+        if (isModding) {
+            repeatedModulo = true;
+            equal();
+        }
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
-        isAdding = false;
-        isSubtracting = false;
-        isMultiplying = false;
-        isDividing = false;
         isModding = true;
     }else if (input == "equal") {
         console.log('equal');
@@ -136,13 +133,24 @@ function equal() {
     console.log(firstNum);
     console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
-    else if (repeatedAddition === true) { numInt = add(firstNum,secondNum); }
+    else if (repeatedAddition === true) { smallerDisplay.textContent = numInt;numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
     else if (isModding === true) { numInt = mod(firstNum, secondNum); }
+
     display.textContent = numInt;
-    smallerDisplay.textContent = numInt;
+
+    isAdding = false;
+    repeatedAddition = false;
+    repeatedSubtraction = false;
+    repeatedMultiplication = false;
+    repeatedDivision = false;
+    repeatedModulo = false;
+    isSubtracting = false;
+    isMultiplying = false;
+    isDividing = false;
+    isModding = false;
 }
 
 function toggleSign() {
