@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    background-color: rgb(15, 15, 15);
+    color:white;
 }
 
 .container {
@@ -9,10 +11,18 @@ body {
     margin:auto;
 }
 .calculator {
+    background-color:rgb(38, 54, 79);
     width: 350px;
+    height: 500px;
     margin:auto;
     border:1px solid black;
+    border-radius: 12px;
     padding: 2em;
+}
+.display-container {
+    background-color: grey;
+    padding: 1em;
+    border-radius: 8px;
 }
 .display {
     display:flex;
@@ -30,9 +40,13 @@ body {
 }
 
 .btn {
+    background-color: rgb(144, 132, 115);
     flex:1;
+    height: 2em;
     font-size: 2rem;
     margin: 0.3em;
+    border-radius: 12px;
+    border: none;
 }
 .btn-big {
     flex:2.7;
