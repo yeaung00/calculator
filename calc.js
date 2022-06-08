@@ -10,11 +10,6 @@ let numInt = 0;
 let firstNum = 0;
 let secondNum = 0;
 let isAdding = false;
-let repeatedAddition = false;
-let repeatedSubtraction = false;
-let repeatedMultiplication = false;
-let repeatedDivision = false;
-let repeatedModulo = false;
 let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
@@ -25,6 +20,7 @@ let isModding = false;
         getNumber(item.id, e);
     });
   });
+
 function operate(input, e) {
     if (input == "sign") {
         toggleSign();
@@ -36,46 +32,31 @@ function operate(input, e) {
         firstNum = 0;
         secondNum = 0;
     }else if (input == "add") {
-        if (isAdding) {
-            repeatedAddition = true;
-            equal();
-        }
+        doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
         isAdding = true;
     }    else if (input == "subtract") {
-        if (isSubtracting) {
-            repeatedSubtraction = true;
-            equal();
-        }
+        doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
         isSubtracting = true;
     }else if (input == "multiply") {
-        if (isMultiplying) {
-            repeatedMultiplication = true;
-            equal();
-        }
+        doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
         isMultiplying = true;
     }else if (input == "divide") {
-        if (isDividing) {
-            repeatedDivision = true;
-            equal();
-        }
+        doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
         isDividing = true;
     }else if (input == "mod") {
-        if (isModding) {
-            repeatedModulo = true;
-            equal();
-        }
+        doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
@@ -129,11 +110,19 @@ function mod(x, y) {
     return x % y;
 }
 
+function doubleOperation() {
+    if (isAdding) { equal() ;}
+    else if (isSubtracting) { equal(); }
+    else if (isMultiplying) { equal(); }
+    else if (isDividing) { equal(); }
+    else if (isModding) { equal(); }
+}
+
 function equal() {
     console.log(firstNum);
     console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
-    else if (repeatedAddition === true) { smallerDisplay.textContent = numInt;numInt = add(firstNum,secondNum); }
+  //  else if (repeatedAddition === true) { smallerDisplay.textContent = numInt;numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
