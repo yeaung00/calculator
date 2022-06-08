@@ -8,6 +8,7 @@ let smallTemp = "";
 let numString = "";
 let numInt = 0;
 let firstNum = 0;
+let secondNum = 0;
 let isAdding = false;
 let isSubtracting = false;
 
@@ -27,11 +28,12 @@ function operate(input, e) {
         numString = "";
     }
     else if (input == "add") {
-        firstNum = numInt;
-        display.textContent = 0;
-        numString = "";
-        isSubtracting = false;
-        isAdding = true;
+            firstNum = numInt;
+            display.textContent = 0;
+            numString = "";
+            isSubtracting = false;
+            isAdding = true;
+        
     }
     else if (input == "subtract") {
         firstNum = numInt;
@@ -51,12 +53,13 @@ function getNumber(input, e) {
         numString += temp;
         smallNumString += temp;
         numInt = parseInt(numString,10);
+        secondNum = numInt;
         smallerDisplay.textContent = smallNumString;
         display.textContent = numString;
     }
     else {
-        temp = e.target.innerText;
-        smallNumString += temp;
+       // temp = e.target.innerText;
+       // smallNumString += temp;
         smallerDisplay.textContent = smallNumString;
         operate(input,e);
     }
@@ -69,9 +72,11 @@ function subtract(x,y) {
     return x-y;
 }
 function equal() {
-    if (isAdding === true) { numInt = add(firstNum,numInt); }
-    else if (isSubtracting === true) { numInt = subtract(firstNum,numInt); }
-    display.textContent = numInt;
+    console.log(firstNum);
+    console.log(secondNum);
+    if (isAdding === true) { firstNum = add(firstNum,secondNum); }
+    else if (isSubtracting === true) { firstNum = subtract(firstNum,secondNum); }
+    display.textContent = firstNum;
     smallerDisplay.textContent = numInt;
     
 }
