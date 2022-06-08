@@ -21,7 +21,7 @@ let isDividing = false;
   });
 function operate(input, e) {
     if (input == "sign") {
-        toggleSign;
+        toggleSign();
     }
     else if (input == "clear") {
         display.textContent = 0;
@@ -117,10 +117,7 @@ function equal() {
     
 }
 function toggleSign() {
-    if (sign === false) { 
-        sign = true;
-
-    }
-    if (sign === true) { sign = false; }
-
+    numInt *= -1;
+    secondNum = numInt;
+    display.textContent = numInt;
 }
