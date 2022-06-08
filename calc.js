@@ -92,7 +92,7 @@ function getNumber(input, e) {
         temp = input.toString();
         numString += temp;
         smallNumString += temp;
-        numInt = parseInt(numString,10);
+        numInt = parseInt(numString, 10);
         secondNum = numInt;
         smallerDisplay.textContent = smallNumString;
         display.textContent = numString;
@@ -101,28 +101,28 @@ function getNumber(input, e) {
        // temp = e.target.innerText;
        // smallNumString += temp;
         smallerDisplay.textContent = smallNumString;
-        operate(input,e);
+        operate(input, e);
     }
 }
-function add(x,y) {
+function add(x, y) {
     firstNum = x + y;
-    return x+y;
+    return x + y;
 }
-function subtract(x,y) {
-    firstNum = x-y;
-    return x-y;
+function subtract(x, y) {
+    firstNum = x - y;
+    return x - y;
 }
-function multiply(x,y) {
-    firstNum = x*y;
-    return x*y;
+function multiply(x, y) {
+    firstNum = x * y;
+    return x * y;
 }
-function divide(x,y) {
-    firstNum = x/y;
-    return x/y;
+function divide(x, y) {
+    firstNum = x / y;
+    return x / y;
 }
-function mod(x,y) {
-    firstNum = x%y;
-    return x%y;
+function mod(x, y) {
+    firstNum = x % y;
+    return x % y;
 }
 function equal() {
     console.log(firstNum);
