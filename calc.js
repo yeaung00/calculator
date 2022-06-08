@@ -27,7 +27,7 @@ function getNumber(input, e) {
         temp = input.toString();
         numString += temp;
         smallNumString += temp;
-        numInt = parseInt(numString, 10);
+        numInt = parseFloat(numString, 10);
         secondNum = numInt;
         smallerDisplay.textContent = smallNumString;
         display.textContent = numString;
@@ -50,7 +50,11 @@ function operate(input, e) {
         firstNum = 0;
         secondNum = 0;
         numInt = 0;
-    }else if (input == "add") {
+    }else if (input == "decimal") {
+        numString += ".";
+        display.textContent = numString;
+    }
+    else if (input == "add") {
         doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
@@ -86,7 +90,6 @@ function operate(input, e) {
         equal();
     } 
 }
-
 
 
 function add(x, y) {
