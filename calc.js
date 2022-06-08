@@ -10,6 +10,7 @@ let numInt = 0;
 let firstNum = 0;
 let secondNum = 0;
 let isAdding = false;
+let doubleAdding = false;
 let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
@@ -29,14 +30,20 @@ function operate(input, e) {
         smallNumString = "";
         numString = "";
     }else if (input == "add") {
+        if (isAdding) {
+            doubleAdding = true;
+            equal();
+        }
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
         isSubtracting = false;
         isAdding = true;
+        doubleAdding = false;
         isMultiplying = false;
         isDividing = false;
-        isModding = true;
+        isModding = false;
+
     }    else if (input == "subtract") {
         firstNum = numInt;
         
@@ -46,7 +53,7 @@ function operate(input, e) {
         isSubtracting = true;
         isMultiplying = false;
         isDividing = false;
-        isModding = true;
+        isModding = false;
     }else if (input == "multiply") {
         firstNum = numInt;
         display.textContent = 0;
@@ -55,7 +62,7 @@ function operate(input, e) {
         isSubtracting = false;
         isMultiplying = true;
         isDividing = false;
-        isModding = true;
+        isModding = false;
     }else if (input == "divide") {
         firstNum = numInt;
         display.textContent = 0;
@@ -64,7 +71,7 @@ function operate(input, e) {
         isSubtracting = false;
         isMultiplying = false;
         isDividing = true;
-        isModding = true;
+        isModding = false;
     }else if (input == "mod") {
         firstNum = numInt;
         display.textContent = 0;
@@ -91,8 +98,8 @@ function getNumber(input, e) {
         display.textContent = numString;
     }
     else {
-       // temp = e.target.innerText;
-       // smallNumString += temp;
+        temp = e.target.innerText;
+        smallNumString += temp;
         smallerDisplay.textContent = smallNumString;
         operate(input, e);
     }
@@ -127,13 +134,13 @@ function equal() {
     console.log(firstNum);
     console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
+    else if (doubleAdding === true) { numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
     else if (isModding === true) { numInt = mod(firstNum, secondNum); }
     display.textContent = numInt;
     smallerDisplay.textContent = numInt;
-    
 }
 
 function toggleSign() {
