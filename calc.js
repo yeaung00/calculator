@@ -23,25 +23,21 @@ let isModding = false;
 function operate(input, e) {
     if (input == "sign") {
         toggleSign();
-    }
-    else if (input == "clear") {
+    }else if (input == "clear") {
         display.textContent = 0;
         smallerDisplay.textContent = 0;
         smallNumString = "";
         numString = "";
-    }
-    else if (input == "add") {
-            firstNum = numInt;
-            display.textContent = 0;
-            numString = "";
-            isSubtracting = false;
-            isAdding = true;
-            isMultiplying = false;
-            isDividing = false;
-            isModding = true;
-        
-    }
-    else if (input == "subtract") {
+    }else if (input == "add") {
+        firstNum = numInt;
+        display.textContent = 0;
+        numString = "";
+        isSubtracting = false;
+        isAdding = true;
+        isMultiplying = false;
+        isDividing = false;
+        isModding = true;
+    }    else if (input == "subtract") {
         firstNum = numInt;
         
         display.textContent = 0;
@@ -51,8 +47,7 @@ function operate(input, e) {
         isMultiplying = false;
         isDividing = false;
         isModding = true;
-    }
-    else if (input == "multiply") {
+    }else if (input == "multiply") {
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
@@ -61,8 +56,7 @@ function operate(input, e) {
         isMultiplying = true;
         isDividing = false;
         isModding = true;
-    }
-    else if (input == "divide") {
+    }else if (input == "divide") {
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
@@ -71,8 +65,7 @@ function operate(input, e) {
         isMultiplying = false;
         isDividing = true;
         isModding = true;
-    }
-    else if (input == "mod") {
+    }else if (input == "mod") {
         firstNum = numInt;
         display.textContent = 0;
         numString = "";
@@ -81,12 +74,12 @@ function operate(input, e) {
         isMultiplying = false;
         isDividing = false;
         isModding = true;
-    }
-    else if (input == "equal") {
+    }else if (input == "equal") {
         console.log('equal');
         equal();
-    }
+    } 
 }
+
 function getNumber(input, e) {
     if (e.target.className != "btn operation") {
         temp = input.toString();
@@ -104,26 +97,32 @@ function getNumber(input, e) {
         operate(input, e);
     }
 }
+
 function add(x, y) {
     firstNum = x + y;
     return x + y;
 }
+
 function subtract(x, y) {
     firstNum = x - y;
     return x - y;
 }
+
 function multiply(x, y) {
     firstNum = x * y;
     return x * y;
 }
+
 function divide(x, y) {
     firstNum = x / y;
     return x / y;
 }
+
 function mod(x, y) {
     firstNum = x % y;
     return x % y;
 }
+
 function equal() {
     console.log(firstNum);
     console.log(secondNum);
@@ -136,6 +135,7 @@ function equal() {
     smallerDisplay.textContent = numInt;
     
 }
+
 function toggleSign() {
     numInt *= -1;
     secondNum = numInt;
