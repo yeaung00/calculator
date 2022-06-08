@@ -90,7 +90,7 @@ function getNumber(input, e) {
     }
 }
 function add(x,y) {
-    firstNum = secondNum;
+    firstNum = x + y;
     return x+y;
 }
 function subtract(x,y) {
@@ -98,18 +98,20 @@ function subtract(x,y) {
     return x-y;
 }
 function multiply(x,y) {
+    firstNum = x*y;
     return x*y;
 }
 function divide(x,y) {
+    firstNum = x/y;
     return x/y;
 }
 function equal() {
     console.log(firstNum);
     console.log(secondNum);
-    if (isAdding === true) { numInt = add(firstNum,numInt); }
+    if (isAdding === true) { numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
-    else if (isMultiplying === true) { firstNum = multiply(firstNum, secondNum); }
-    else if (isDividing === true) { firstNum = divide(firstNum, secondNum); }
+    else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
+    else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
     display.textContent = numInt;
     smallerDisplay.textContent = numInt;
     
