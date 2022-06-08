@@ -10,7 +10,7 @@ let numInt = 0;
 let firstNum = 0;
 let secondNum = 0;
 let isAdding = false;
-let doubleAdding = false;
+let repeatedAddition = false;
 let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
@@ -29,9 +29,11 @@ function operate(input, e) {
         smallerDisplay.textContent = 0;
         smallNumString = "";
         numString = "";
+        firstNum = 0;
+        secondNum = 0;
     }else if (input == "add") {
         if (isAdding) {
-            doubleAdding = true;
+            repeatedAddition = true;
             equal();
         }
         firstNum = numInt;
@@ -39,7 +41,7 @@ function operate(input, e) {
         numString = "";
         isSubtracting = false;
         isAdding = true;
-        doubleAdding = false;
+        repeatedAddition = false;
         isMultiplying = false;
         isDividing = false;
         isModding = false;
@@ -134,7 +136,7 @@ function equal() {
     console.log(firstNum);
     console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
-    else if (doubleAdding === true) { numInt = add(firstNum,secondNum); }
+    else if (repeatedAddition === true) { numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
