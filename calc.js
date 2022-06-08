@@ -11,6 +11,8 @@ let firstNum = 0;
 let secondNum = 0;
 let isAdding = false;
 let isSubtracting = false;
+let isMultiplying = false;
+let isDividing = false;
 
 [].forEach.call(btn, function(item, i) {
     item.addEventListener('click', (e) => {
@@ -33,14 +35,37 @@ function operate(input, e) {
             numString = "";
             isSubtracting = false;
             isAdding = true;
+            isMultiplying = false;
+            isDividing = false;
         
     }
     else if (input == "subtract") {
         firstNum = numInt;
+        
         display.textContent = 0;
         numString = "";
         isAdding = false;
         isSubtracting = true;
+        isMultiplying = false;
+        isDividing = false;
+    }
+    else if (input == "multiply") {
+        firstNum = numInt;
+        display.textContent = 0;
+        numString = "";
+        isAdding = false;
+        isSubtracting = false;
+        isMultiplying = true;
+        isDividing = false;
+    }
+    else if (input == "divide") {
+        firstNum = numInt;
+        display.textContent = 0;
+        numString = "";
+        isAdding = false;
+        isSubtracting = false;
+        isMultiplying = false;
+        isDividing = true;
     }
     else if (input == "equal") {
         console.log('equal');
@@ -65,18 +90,27 @@ function getNumber(input, e) {
     }
 }
 function add(x,y) {
+    firstNum = secondNum;
     return x+y;
 }
 function subtract(x,y) {
     firstNum = x-y;
     return x-y;
 }
+function multiply(x,y) {
+    return x*y;
+}
+function divide(x,y) {
+    return x/y;
+}
 function equal() {
     console.log(firstNum);
     console.log(secondNum);
-    if (isAdding === true) { firstNum = add(firstNum,secondNum); }
-    else if (isSubtracting === true) { firstNum = subtract(firstNum,secondNum); }
-    display.textContent = firstNum;
+    if (isAdding === true) { numInt = add(firstNum,numInt); }
+    else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
+    else if (isMultiplying === true) { firstNum = multiply(firstNum, secondNum); }
+    else if (isDividing === true) { firstNum = divide(firstNum, secondNum); }
+    display.textContent = numInt;
     smallerDisplay.textContent = numInt;
     
 }
