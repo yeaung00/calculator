@@ -19,7 +19,25 @@ let isModding = false;
     item.addEventListener('click', (e) => {
         getNumber(item.id, e);
     });
-  });
+});
+
+function getNumber(input, e) {
+    console.log(e.target);
+    if (e.target.className != "btn operation") {
+        temp = input.toString();
+        numString += temp;
+        smallNumString += temp;
+        numInt = parseInt(numString, 10);
+        secondNum = numInt;
+        smallerDisplay.textContent = smallNumString;
+        display.textContent = numString;
+    }else {
+        temp = e.target.innerText;
+        smallNumString += temp;
+        smallerDisplay.textContent = smallNumString;
+        operate(input, e);
+    }
+}
 
 function operate(input, e) {
     if (input == "sign") {
@@ -31,6 +49,7 @@ function operate(input, e) {
         numString = "";
         firstNum = 0;
         secondNum = 0;
+        numInt = 0;
     }else if (input == "add") {
         doubleOperation();
         firstNum = numInt;
@@ -47,6 +66,7 @@ function operate(input, e) {
         doubleOperation();
         firstNum = numInt;
         display.textContent = 0;
+        secondNum = 0;
         numString = "";
         isMultiplying = true;
     }else if (input == "divide") {
@@ -67,23 +87,7 @@ function operate(input, e) {
     } 
 }
 
-function getNumber(input, e) {
-    if (e.target.className != "btn operation") {
-        temp = input.toString();
-        numString += temp;
-        smallNumString += temp;
-        numInt = parseInt(numString, 10);
-        secondNum = numInt;
-        smallerDisplay.textContent = smallNumString;
-        display.textContent = numString;
-    }
-    else {
-        temp = e.target.innerText;
-        smallNumString += temp;
-        smallerDisplay.textContent = smallNumString;
-        operate(input, e);
-    }
-}
+
 
 function add(x, y) {
     firstNum = x + y;
@@ -122,12 +126,10 @@ function equal() {
     console.log(firstNum);
     console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
-  //  else if (repeatedAddition === true) { smallerDisplay.textContent = numInt;numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
     else if (isModding === true) { numInt = mod(firstNum, secondNum); }
-
     display.textContent = numInt;
 
     isAdding = false;
