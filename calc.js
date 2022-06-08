@@ -2,13 +2,14 @@ const container = document.querySelector(".container");
 const btn = document.querySelectorAll(".btn");
 const display = document.querySelector(".display");
 const smallerDisplay = document.querySelector(".display-small");
-let sign = false;
-let smallNumString = "";
+let temp = "";
+let smallNumString = "0";
 let smallTemp = "";
 let numString = "";
 let numInt = 0;
 let firstNum = 0;
 let secondNum = 0;
+let lastIndex = 0;
 let isAdding = false;
 let isSubtracting = false;
 let isMultiplying = false;
@@ -32,9 +33,11 @@ function getNumber(input, e) {
         smallerDisplay.textContent = smallNumString;
         display.textContent = numString;
     }else {
-        temp = e.target.innerText;
-        smallNumString += temp;
-        smallerDisplay.textContent = smallNumString;
+        if (e.target.innerText != "+/-") {
+            temp = e.target.innerText;
+            smallNumString += temp;
+            smallerDisplay.textContent = smallNumString;
+        }
         operate(input, e);
     }
 }
@@ -126,8 +129,6 @@ function doubleOperation() {
 }
 
 function equal() {
-    console.log(firstNum);
-    console.log(secondNum);
     if (isAdding === true) { numInt = add(firstNum,secondNum); }
     else if (isSubtracting === true) { numInt = subtract(firstNum,secondNum); }
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
@@ -145,10 +146,18 @@ function equal() {
     isMultiplying = false;
     isDividing = false;
     isModding = false;
+    sign = false;
 }
 
 function toggleSign() {
+    lastIndex = smallNumString.length-1;
     numInt *= -1;
     secondNum = numInt;
+    temp = numInt.toString();
     display.textContent = numInt;
+    smallNumString = smallNumString.split('');
+    smallNumString[lastIndex] = temp;
+    smallNumString = smallNumString.join('');
+    smallerDisplay.textContent = smallNumString;
+    sign = true;
 }
