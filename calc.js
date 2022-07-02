@@ -15,6 +15,7 @@ let isSubtracting = false;
 let isMultiplying = false;
 let isDividing = false;
 let isModding = false;
+let isExponentiating = false;
 
 [].forEach.call(btn, function(item, i) {
     item.addEventListener('click', (e) => {
@@ -48,7 +49,7 @@ function operate(input, e) {
     }else if (input == "clear") {
         display.textContent = 0;
         smallerDisplay.textContent = 0;
-        smallNumString = "";
+        smallNumString = "0";
         numString = "";
         firstNum = 0;
         secondNum = 0;
@@ -88,7 +89,13 @@ function operate(input, e) {
         display.textContent = 0;
         numString = "";
         isModding = true;
-    }else if (input == "equal") {
+    }else if (input == "exponent") {
+        firstNum = numInt;
+        display.textContent = 0;
+        numString = "";
+        isExponentiating = true;
+    }
+    else if (input == "equal") {
         console.log('equal');
         equal();
     } 
@@ -120,6 +127,18 @@ function mod(x, y) {
     return x % y;
 }
 
+function exponent(x,n) {
+    if (n == 0) { return 1; }
+        
+    if (n == 1) { return x; }  
+        
+    if (n == 2) { return x*x; }    
+
+    else if (n % 2 == 1) { return x * exponent(x * x, Math.floor(n / 2)); }   
+        
+    else if (n % 2 == 0) { return exponent(x * x, n / 2); }
+}
+
 function doubleOperation() {
     if (isAdding) { equal() ;}
     else if (isSubtracting) { equal(); }
@@ -134,6 +153,7 @@ function equal() {
     else if (isMultiplying === true) { numInt = multiply(firstNum, secondNum); }
     else if (isDividing === true) { numInt = divide(firstNum, secondNum); }
     else if (isModding === true) { numInt = mod(firstNum, secondNum); }
+    else if (isExponentiating === true) { numInt = exponent(firstNum, secondNum); }
     display.textContent = numInt;
 
     isAdding = false;
@@ -146,6 +166,7 @@ function equal() {
     isMultiplying = false;
     isDividing = false;
     isModding = false;
+    isExponentiating = false;
     sign = false;
 }
 
